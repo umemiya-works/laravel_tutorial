@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/todoes', [TodoController::class, 'index'])->name('todoes.index');
+Route::get('/todoes/create', [TodoController::class, 'create'])->name('todoes.create');
+Route::post('/todoes', [TodoController::class, 'store'])->name('todoes.store');

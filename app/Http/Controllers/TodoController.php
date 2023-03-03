@@ -26,7 +26,9 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        $todo = new Todo();
+        $data = ['todo' => $todo];
+        return view('todoes.create', $data);
     }
 
     /**

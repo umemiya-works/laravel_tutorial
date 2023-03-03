@@ -12,6 +12,7 @@
         <div class="site-title">Todoリスト</div>
     </header>
     <main class="container">
+        <p><a href="{{ route('todoes.create') }}">Todoを作成する</a></p>
         @foreach ($todoes as $todo)
         <todo class="todo-item">
             <div class="todo-title">{{ $todo->title }}</div>
