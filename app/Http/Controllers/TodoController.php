@@ -39,7 +39,16 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required|max:255'
+        ]);
+        $article = new Todo();
+        $article->title = $request->title;
+        $article->body = $request->body;
+        $article->save();
+
+        return redirect(route('todoes.index'));
     }
 
     /**
