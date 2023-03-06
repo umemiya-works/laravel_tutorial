@@ -59,7 +59,8 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        $data = ['todo' => $todo];
+        return view('todoes.show', $data);
     }
 
     /**
