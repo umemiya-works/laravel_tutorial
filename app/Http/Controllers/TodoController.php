@@ -44,6 +44,7 @@ class TodoController extends Controller
             'body' => 'required|max:255'
         ]);
         $article = new Todo();
+        $article->user_id = \Auth::id();
         $article->title = $request->title;
         $article->body = $request->body;
         $article->save();
