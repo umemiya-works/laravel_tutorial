@@ -12,7 +12,8 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TodoController;
+use app\http\controllers\todocontroller;
+use app\http\controllers\homecontroller;
 
 Route::get('/', function () {
     return view('welcome');
