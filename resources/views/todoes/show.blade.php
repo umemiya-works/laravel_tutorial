@@ -6,7 +6,7 @@
     <div class="todo-body">{!! nl2br(e($todo->body)) !!}</div>
     <div class="todo-control">
         <a href="{{ route('todoes.edit', $todo) }}">編集</a>
-        <form action="{{ route('todoes.destroy', $todo) }}" method="post">
+        <form onsubmit="return confirm('本当に削除しますか?')" action="{{ route('todoes.destroy', $todo) }}" method="post">
             @csrf
             @method('delete')
             <button type="submit">削除</button>
