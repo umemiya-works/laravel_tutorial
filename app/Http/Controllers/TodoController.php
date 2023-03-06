@@ -84,7 +84,14 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body'=> 'required|max:255'
+        ]);
+        $todo->title = $request->title;
+        $todo->body = $request->body;
+        $todo->save();
+        return redirect(route('todoes.show', $todo));
     }
 
     /**
