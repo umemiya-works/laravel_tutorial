@@ -11,16 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todoes', [TodoController::class, 'index'])->name('todoes.index');
-Route::get('/todoes/create', [TodoController::class, 'create'])->name('todoes.create');
-Route::post('/todoes', [TodoController::class, 'store'])->name('todoes.store');
-Route::get('/todoes/{todo}', [TodoController::class, 'show'])->name('todoes.show');
-Route::get('/todoes/{todo}/edit', [TodoController::class, 'edit'])->name('todoes.edit');
-Route::patch('/todoes/{todo}', [TodoController::class, 'update'])->name('todoes.update');
-Route::delete('/todoes/{todo}', [TodoController::class, 'destroy'])->name('todoes.destroy');
+Route::resource('todoes', 'TodoController');
