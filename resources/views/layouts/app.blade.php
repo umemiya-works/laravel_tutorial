@@ -9,7 +9,24 @@
 </head>
 <body>
     <header>
-        <div class="site-title">Todoリスト</div>
+        <a href="/" class="site-title">Todoリスト</a>
+        <nav class="tab">
+            <ul>
+                @if (Auth::check())
+                <li><a class="tab-item{{ Request::is('home') ? 'active' : ''}}" href="{{ route('home') }}">マイページ</a></li>
+                <li><a class="tab-item{{ Request::is('todoes') ? 'active' : ''}}" href="{{ route('todoes.index') }}">記事検索</a></li>
+                <li>
+                    <form on-submit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+                @else
+                <li><a href="{{ route('login') }}"></a></li>
+                <li><a href="{{ route('register') }}">会員登録</a></li>
+                @endif
+            </ul>
+        </nav>
     </header>
     <main class="container">
         @yield('content')
