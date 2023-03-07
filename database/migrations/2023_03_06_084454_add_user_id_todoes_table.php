@@ -27,7 +27,7 @@ class AddUserIdTodoesTable extends Migration
     public function down()
     {
         Schema::table('todoes', function (Blueprint $table) {
-            $table->dropForeign('articles_user_id_foreign');
+            $table->dropForeign('todoes_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }

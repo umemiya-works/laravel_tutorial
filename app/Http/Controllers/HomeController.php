@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use app\Models\Todo;
+use App\Models\Task;
 
 class HomeController extends Controller
 {
@@ -15,10 +15,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user = Auth::user()->todoes();
-        $todoes = $user->first();
+        $tasks = Auth::user()->tasks()->where('status', '=', false)->get();
         $data = [
-            'todoes' => $todoes,
+            'tasks' => $tasks,
         ];
         return view('home', $data);
     }

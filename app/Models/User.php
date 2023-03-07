@@ -22,8 +22,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function todoes()
+    public function tasks()
     {
-        return $this->hasMany(Todo::class);
+        return $this->hasMany(Task::class);
     }
 }

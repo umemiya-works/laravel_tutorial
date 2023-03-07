@@ -70,31 +70,31 @@ ul.alert {
   background: #f8d6d9;
   color: #721c24;
 }
-.todo-item {
+.task-item {
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
 }
-.todo-title {
+.task-title {
   margin-bottom: 10px;
   font-size: 1.2rem;
   font-weight: bold;
 }
-.todo-detail .todo-title {
+.task-detail .task-title {
   font-size: 1.4rem;
 }
-.todo-info {
+.task-info {
   font-size: .8rem;
   color: #777;
 }
-.todo-body {
+.task-body {
   margin: 1rem 0;
   padding: 1rem 0;
   border-top: 1px dotted #ddd;
   border-bottom: 1px dotted #ddd;
 }
-.todo-control {
+.task-control {
   display: flex;
-  justify-content: space-berweeen;
+  justify-content: space-between;
 }
 dl.form-list {
   max-width: 600px;

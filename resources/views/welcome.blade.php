@@ -4,7 +4,7 @@
     <h1>Mini Blog</h1>
     @auth
     <a class="btn" href="{{ route('home') }}">マイページ</a>
-    <a class="btn" href="{{ route('todoes.index') }}">Todoリスト</a>
+    <a class="btn" href="{{ route('tasks.index') }}">Todoリスト</a>
     @else
     <a class="btn" href="{{ route('register') }}">会員登録</a>
     <a class="btn" href="{{ route('login') }}">ログイン</a>

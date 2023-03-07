@@ -13,14 +13,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use app\http\controllers\todocontroller;
+use app\http\controllers\taskcontroller;
 use app\http\controllers\homecontroller;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('todoes', 'TodoController');
+Route::resource('tasks', 'TaskController');
 
 Auth::routes();
 
