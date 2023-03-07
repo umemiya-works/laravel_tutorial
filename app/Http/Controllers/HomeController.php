@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Todo;
+use Illuminate\Support\Facades\Auth;
+use app\Models\Todo;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $todoes = \Auth::user()->todoes()->orderBy('created_at', 'desc')->paginate(5);
+        $user = Auth::user()->todoes();
+        $todoes = $user->first();
         $data = [
             'todoes' => $todoes,
         ];

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TodoController extends Controller
 {
     public function index()
     {
-        $todoes = Todo::orderBy('created_at', 'desc')->paginate(10);
+        $todoes = Todo::where('status', '=', false)->orderBy('created_at', 'desc')->paginate(10);
         $data = ['todoes' => $todoes];
         return view('todoes.index', $data);
     }
@@ -28,7 +30,7 @@ class TodoController extends Controller
             'body' => 'required|max:255'
         ]);
         $article = new Todo();
-        $article->user_id = \Auth::id();
+        $article->user_id = Auth::id();
         $article->title = $request->title;
         $article->body = $request->body;
         $article->save();
@@ -52,13 +54,19 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $this->authorize($todo);
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'body'=> 'required|max:255'
-        ]);
-        $todo->title = $request->title;
-        $todo->body = $request->body;
-        $todo->save();
+        if($request->status === null) {
+            $this->validate($request, [
+                'title' => 'required|max:255',
+                'body'=> 'required|max:255'
+            ]);
+            $todo->title = $request->title;
+            $todo->body = $request->body;
+            $todo->save();
+        } else {
+            $todo = Todo::find($todo->id);
+            $todo->status = true;
+            $todo->save();
+        }
         return redirect(route('todoes.show', $todo));
     }
 
