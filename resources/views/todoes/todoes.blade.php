@@ -6,3 +6,4 @@
     </div>
 </todo>
 @endforeach
+{{ $todoes->links() }}

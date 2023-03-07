@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $todoes = \Auth::user()->todoes()->orderBy('created_at', 'desc')->get();
+        $todoes = \Auth::user()->todoes()->orderBy('created_at', 'desc')->paginate(5);
         $data = [
             'todoes' => $todoes,
         ];
