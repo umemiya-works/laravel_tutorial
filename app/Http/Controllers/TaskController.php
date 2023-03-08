@@ -6,12 +6,11 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('created_at', 'desc')->paginate(5);
         $data = ['tasks' => $tasks];
         return view('tasks.index', $data);
     }

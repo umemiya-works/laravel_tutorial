@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $task = Auth::user()->tasks->where('status', '=', false)->first();
+        $task = Auth::user()->tasks()->orderBy('created_at', 'desc')->where('status', '=', false)->first();
         $data = [
             'task' => $task,
         ];

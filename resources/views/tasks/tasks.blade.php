@@ -1,10 +1,16 @@
-<!-- @if ($tasks != "") -->
-    @foreach($tasks as $task)
+@forelse($tasks as $task)
     <task class="task-item">
-        <div class="task-title"><a href="{{ route('tasks.show', $task) }}">{{ optional($task)->title }}</a></div>
+        <div class="task-title"><a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a></div>
         <div class="task-info">
-            {{ optional($task)->created_at }}
+                {{ $task->created_at }}
+            @if($task->status == true)
+                <div>完了</div>
+            @else
+                <div>未完了</div>
+            @endif
         </div>
     </task>
-    @endforeach
-<!-- @endif -->
+    {{ $tasks->links() }}
+@empty
+    <h2>Todoが登録されていません</h2>
+@endforelse
