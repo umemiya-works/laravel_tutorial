@@ -10,13 +10,13 @@
             @csrf
             @method('put')
             <input type="hidden" name="status" value="{{ $task->status }}">
-            <button type="submit">完了</button>
+            <button type="button" class="btn">完了</button>
         </form>
         <a href="{{ route('tasks.edit', $task) }}">編集</a>
         <form onsubmit="return confirm('本当に削除しますか?')" action="{{ route('tasks.destroy', $task) }}" method="post">
             @csrf
             @method('delete')
-            <button type="submit">削除</button>
+            <button type="button" class="btn">削除</button>
         </form>
     </div>
     @endcan
