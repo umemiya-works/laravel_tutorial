@@ -15,9 +15,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $tasks = Auth::user()->tasks()->where('status', '=', false)->get();
+        $task = Auth::user()->tasks->where('status', '=', false)->first();
         $data = [
-            'tasks' => $tasks,
+            'task' => $task,
         ];
         return view('home', $data);
     }

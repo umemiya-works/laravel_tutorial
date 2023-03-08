@@ -1,4 +1,4 @@
-@if ($tasks != "")
+<!-- @if ($tasks != "") -->
     @foreach($tasks as $task)
     <task class="task-item">
         <div class="task-title"><a href="{{ route('tasks.show', $task) }}">{{ optional($task)->title }}</a></div>
@@ -7,4 +7,4 @@
         </div>
     </task>
     @endforeach
-@endif
+<!-- @endif -->
