@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::orderBy('created_at', 'desc')->paginate(5);
+        $search = $request->input('search');
+        $query = Task::query();
+        if(!empty($search)) {
+            $query->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%");
+        }
+        $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
         $data = ['tasks' => $tasks];
         return view('tasks.index', $data);
     }
