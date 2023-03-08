@@ -4,9 +4,9 @@
         <div class="task-info">
                 {{ $task->created_at }}
             @if($task->status == true)
-                <div>完了</div>
+                <div class="btn btn-info">完了</div>
             @else
-                <div>未完了</div>
+                <div class="btn btn-primary">未完了</div>
             @endif
         </div>
     </task>
