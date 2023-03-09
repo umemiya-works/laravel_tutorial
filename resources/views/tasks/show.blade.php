@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<task class="task-detail">
-    <h1 class="task-title">{{ $task->title }}</h1>
-    <div class="task-info">{{ $task->created_at }}</div>
-    <div class="task-body">{!! nl2br(e($task->body)) !!}</div>
+<task class="">
+    <h1 class="">{{ $task->title }}</h1>
+    <div class="">{{ $task->created_at }}</div>
+    <div class="">{!! nl2br(e($task->body)) !!}</div>
     @can('update', $task)
-    <div class="task-control">
+    <div class="">
         <form action="{{ route('tasks.update', $task) }}" method="post">
             @csrf
             @method('put')
