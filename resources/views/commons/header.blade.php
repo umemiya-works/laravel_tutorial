@@ -3,8 +3,7 @@
     @if (Auth::check())
     <li><a class="nav-link px-2 link-secondary" href="{{ route('home') }}">マイページ</a></li>
     <li class="nav-link px-2 link-secondary">
-        <a href="{{ route('tasks.index') }}">Todo検索
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <a href="{{ route('tasks.index') }}">Todo一覧
         </a>
     </li>
     <li class="nav-link px-2 link-secondary">

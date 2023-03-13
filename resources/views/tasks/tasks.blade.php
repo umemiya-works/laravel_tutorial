@@ -6,9 +6,9 @@
         </td>
         <td class="">
             @if($task->status == true)
-                <div class="btn btn-info">完了</div>
+                <div class="btn btn-success">完了</div>
             @else
-                <div class="btn btn-primary">未完了</div>
+                <div class="btn btn-danger">未完了</div>
             @endif
         </td>
     </tr>

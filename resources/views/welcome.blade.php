@@ -8,7 +8,7 @@
         </p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             @auth
-            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{ route('home') }}">マイページ</a>
+            <a class="btn btn-primary btn-lg px-4 me-sm-3 mr-2" href="{{ route('home') }}">マイページ</a>
             <a class="btn btn-outline-secondary btn-lg px-4" href="{{ route('tasks.index') }}">Todoリスト</a>
             @else
             <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{ route('register') }}">会員登録</a>

@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<h1 class="text-center mb-4">Todo検索</h1>
+<h1 class="text-center mb-4">Todo一覧</h1>
 <form method="get" action="{{ route('tasks.index') }}" class="mb-4">
     <div class="input-group max-width">
         <input type="search" placeholder="検索ワードを入力" name="search" value="@if (isset($search)) {{ $search }} @endif" class="form-control">
-        <button type="button" class="btn btn-outline-success">検索</button>
+        <button type="submit" class="btn btn-outline-success">
+            検索
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
         <button type="button" class="btn btn-outline-info">
             <a href="{{ route('tasks.index') }}">
                 クリア

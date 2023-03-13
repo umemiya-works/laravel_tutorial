@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="text-center">
-    <main class="form-signin w-100 m-auto">
+    <main class="w-100 m-auto">
         @include('commons.errors')
         <form action="{{ route('login') }}" method="post">
             @csrf
@@ -15,9 +15,9 @@
             <div class="checkbox mb-2">
                 <label><input type="checkbox" value="remember-me">ログインしたままにする</label>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="w-24 btn btn-lg btn-primary" type="submit">ログイン</button>
-                <a class="w-24 btn btn-lg btn-danger" href="/">キャンセル</a>
+            <div class="mx-auto">
+                <button class="w-16 btn btn-lg btn-primary" type="submit">ログイン</button>
+                <a class="w-16 btn btn-lg btn-danger" href="/">キャンセル</a>
             </div>
         </form>
     </main>

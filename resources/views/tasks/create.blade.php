@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('content')
 @include('commons.errors')
-<form action="{{ route('tasks.store') }}" method="post">
-    @include('tasks.form')
-    <button type="submit">投稿する</button>
-    <a href="{{ route('tasks.index') }}">キャンセル</a>
-</form>
+<div class="text-center">
+    <main class="w-100 m-auto">
+        <form action="{{ route('tasks.store') }}" method="post">
+            @csrf
+            @include('tasks.form')
+            <div class="mx-auto">
+                <button class="btn btn-lg btn-primary mr-2" type="submit">更新する</button>
+                <a class="btn btn-lg btn-danger" href="{{ route('tasks.index') }}">キャンセル</a>
+            </div>
+        </form>
+    </main>
+</div>
 @endsection()
