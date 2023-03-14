@@ -1,14 +1,14 @@
 @forelse($tasks as $task)
     <tr>
-        <td class=""><a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a></td>
-        <td class="">
-            {{ $task->created_at }}
+        <td class="align-middle"><a href="{{ route('tasks.show', $task) }}" class="">{{ $task->title }}</a></td>
+        <td class="align-middle">
+            <div class="align-middle">{{ $task->created_at }}</div>
         </td>
-        <td class="">
+        <td class="align-middle">
             @if($task->status == true)
-                <div class="btn btn-success">完了</div>
+                <div class="w-50 btn btn-success align-middle">完了</div>
             @else
-                <div class="btn btn-danger">未完了</div>
+                <div class="w-50 btn btn-danger align-middle">未完了</div>
             @endif
         </td>
     </tr>

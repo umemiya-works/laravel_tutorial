@@ -7,7 +7,7 @@
             @csrf
             @include('tasks.form')
             <div class="mx-auto">
-                <button class="btn btn-lg btn-primary mr-2" type="submit">更新する</button>
+                <button class="btn btn-lg btn-primary mr-2" type="submit">作成する</button>
                 <a class="btn btn-lg btn-danger" href="{{ route('tasks.index') }}">キャンセル</a>
             </div>
         </form>
