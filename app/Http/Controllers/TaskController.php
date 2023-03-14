@@ -11,10 +11,14 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $status = $request->input('status');
         $query = Task::query();
         if(!empty($search)) {
             $query->where('title', 'LIKE', "%{$search}%")
             ->orWhere('body', 'LIKE', "%{$search}%");
+        }
+        if($status != null) {
+            $query->where('status', '=', $status);
         }
         $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
         $data = ['tasks' => $tasks];
