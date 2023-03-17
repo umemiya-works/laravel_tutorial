@@ -9,6 +9,10 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class TaskPolicy
 {
     use HandlesAuthorization;
+    public function show(User $user, Task $task)
+    {
+        return $user->id == $task->user_id;
+    }
     public function update(User $user, Task $task)
     {
         return $user->id == $task->user_id;

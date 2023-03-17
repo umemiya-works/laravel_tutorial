@@ -28,6 +28,7 @@
 </div>
 <div class="container">
     <table class="table table-striped text-center mb-4">
+        @if($tasks == null)
         <thead>
             <tr>
                 <th scope="col">やること</th>
@@ -35,6 +36,7 @@
                 <th scope="col">状態</th>
             </tr>
         </thead>
+        @endif
         <tbody>
         @include('tasks.tasks')
         </tbody>

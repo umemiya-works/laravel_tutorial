@@ -12,7 +12,8 @@ class TaskController extends Controller
     {
         $search = $request->input('search');
         $status = $request->input('status');
-        $query = Task::query();
+        $user_id = Auth::id();
+        $query = Task::query()->where('user_id', '=', $user_id)->orderBy('created_at', 'desc');
         if(!empty($search)) {
             $query->where('title', 'LIKE', "%{$search}%")
             ->orWhere('body', 'LIKE', "%{$search}%");
@@ -20,7 +21,7 @@ class TaskController extends Controller
         if($status != null) {
             $query->where('status', '=', $status);
         }
-        $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
+        $tasks = $query->paginate(5);
         $data = ['tasks' => $tasks];
         return view('tasks.index', $data);
     }
@@ -49,20 +50,21 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
+        $this->authorize('show', $task);
         $data = ['task' => $task];
         return view('tasks.show', $data);
     }
 
     public function edit(Task $task)
     {
-        $this->authorize($task);
+        $this->authorize('update', $task);
         $data = ['task' => $task];
         return view('tasks.edit', $data);
     }
 
     public function update(Request $request, Task $task)
     {
-        $this->authorize($task);
+        $this->authorize('update', $task);
         if($request->status === null) {
             $this->validate($request, [
                 'title' => 'required|max:255',
@@ -81,7 +83,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        $this->authorize($task);
+        $this->authorize('delete', $task);
         $task->delete();
         return redirect(route('tasks.index'));
     }
