@@ -13,8 +13,7 @@ class TaskController extends Controller
     {
         $search = $request->input('search');
         $status = $request->input('status');
-        $user_id = Auth::id();
-        $query = Task::query()->where('user_id', '=', $user_id)->orderBy('created_at', 'desc');
+        $query = Task::query()->where('user_id', '=', Auth::id());
         if(!empty($search)) {
             $query->where('title', 'LIKE', "%{$search}%")
             ->orWhere('body', 'LIKE', "%{$search}%");
@@ -22,7 +21,7 @@ class TaskController extends Controller
         if($status != null) {
             $query->where('status', '=', $status);
         }
-        $tasks = $query->paginate(5);
+        $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
         $data = ['tasks' => $tasks];
         return view('tasks.index', $data);
     }
@@ -62,16 +61,19 @@ class TaskController extends Controller
     public function update(TaskPostRequest $request, Task $task)
     {
         $this->authorize('update', $task);
-        if($request->status === null) {
-            $task->title = $request->title;
-            $task->body = $request->body;
-            $task->save();
-        } else {
-            $task= Task::find($task->id);
-            $task->status = true;
-            $task->save();
-        }
+        $task->title = $request->title;
+        $task->body = $request->body;
+        $task->save();
         return redirect(route('tasks.show', $task));
+    }
+
+    public function updateStatus(Task $task)
+    {
+        $this->authorize('update', $task);
+        $task= Task::find($task->id);
+        $task->status = true;
+        $task->save();
+        return redirect(route('tasks.index'));
     }
 
     public function destroy(Task $task)

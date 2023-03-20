@@ -9,6 +9,10 @@ class Task extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'title', 'body', 'user_id', 'status'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

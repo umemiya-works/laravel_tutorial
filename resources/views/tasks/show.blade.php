@@ -7,7 +7,7 @@
         <div class="small text-muted mb-4">{{ $task->created_at }}</div>
         @can('update', $task)
         <div class="d-flex justify-content-end">
-            <form action="{{ route('tasks.update', $task) }}" method="post" class="mr-2">
+            <form action="{{ route('tasks.updateStatus', $task) }}" method="post" class="mr-2">
                 @csrf
                 @method('put')
                 <input type="hidden" name="status" value="{{ $task->status }}">
