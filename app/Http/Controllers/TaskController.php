@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskPostRequest;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -33,12 +34,8 @@ class TaskController extends Controller
         return view('tasks.create', $data);
     }
 
-    public function store(Request $request)
+    public function store(TaskPostRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'body' => 'required|max:255'
-        ]);
         $task = new Task();
         $task->user_id = Auth::id();
         $task->title = $request->title;
@@ -62,14 +59,10 @@ class TaskController extends Controller
         return view('tasks.edit', $data);
     }
 
-    public function update(Request $request, Task $task)
+    public function update(TaskPostRequest $request, Task $task)
     {
         $this->authorize('update', $task);
         if($request->status === null) {
-            $this->validate($request, [
-                'title' => 'required|max:255',
-                'body'=> 'required|max:255'
-            ]);
             $task->title = $request->title;
             $task->body = $request->body;
             $task->save();
