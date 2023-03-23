@@ -14,3 +14,9 @@ $factory->define(Task::class, function (Faker $faker) {
         }
     ];
 });
+
+$factory->state(Task::class, 'test', function  (Faker $Faker){
+    return [
+        'user_id' => 1,
+    ];
+});
