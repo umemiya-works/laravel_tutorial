@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskPostRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TaskService;
 
 class TaskController extends Controller
 {
@@ -13,16 +14,7 @@ class TaskController extends Controller
     {
         $search = $request->input('search');
         $status = $request->input('status');
-        $user_id = Auth::id();
-        $query = Task::query()->where('user_id', '=', $user_id)->orderBy('created_at', 'desc');
-        if(!empty($search)) {
-            $query->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('body', 'LIKE', "%{$search}%");
-        }
-        if($status != null) {
-            $query->where('status', '=', $status);
-        }
-        $tasks = $query->paginate(5);
+        $tasks = TaskService::searchTask($search, $status);
         $data = ['tasks' => $tasks];
         return view('tasks.index', $data);
     }
