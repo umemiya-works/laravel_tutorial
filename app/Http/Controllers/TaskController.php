@@ -15,15 +15,13 @@ class TaskController extends Controller
         $search = $request->input('search');
         $status = $request->input('status');
         $tasks = TaskService::searchTask($search, $status);
-        $data = ['tasks' => $tasks];
-        return view('tasks.index', $data);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
         $task = new Task();
-        $data = ['task' => $task];
-        return view('tasks.create', $data);
+        return view('tasks.create', ['tasks' => $task]);
     }
 
     public function store(TaskPostRequest $request)
@@ -40,15 +38,13 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         $this->authorize('show', $task);
-        $data = ['task' => $task];
-        return view('tasks.show', $data);
+        return view('tasks.show', ['task' => $task]);
     }
 
     public function edit(Task $task)
     {
         $this->authorize('update', $task);
-        $data = ['task' => $task];
-        return view('tasks.edit', $data);
+        return view('tasks.edit', ['task' => $task]);
     }
 
     public function update(TaskPostRequest $request, Task $task)
