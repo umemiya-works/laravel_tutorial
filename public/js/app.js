@@ -37352,6 +37352,11 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+setTimeout(function () {
+  $(".flash").fadeOut(5000).queue(function () {
+    this.remove();
+  });
+}, 1000);
 
 /***/ }),
 
