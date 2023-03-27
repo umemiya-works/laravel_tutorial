@@ -17,7 +17,7 @@
                     <button type="submit" class="btn btn-danger">未完了</button>
                 @endif
             </form>
-            <button class="btn btn-success mr-2">
+            <button class="btn btn-primary mr-2">
                 <a href="{{ route('tasks.edit', $task) }}" class="text-white">編集</a>
             </button>
             <form onsubmit="return confirm('本当に削除しますか?')" action="{{ route('tasks.destroy', $task) }}" method="post" class="mr-2">

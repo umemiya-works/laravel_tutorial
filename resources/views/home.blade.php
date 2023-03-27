@@ -8,7 +8,7 @@
             <a class="btn btn-outline-primary" href="{{ route('tasks.create') }}">Todoを追加する</a>
         </div>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            @include('tasks.hometask')
+            @include('tasks.homeTask')
         </div>
     </div>
 </div>

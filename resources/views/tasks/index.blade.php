@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('commons.flash')
 @include('tasks.searchForm')
 <div class="mb-4 text-center">
     <a class="btn btn-outline-primary w-100" href="{{ route('tasks.create') }}">Todoを追加する</a>

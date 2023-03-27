@@ -32,7 +32,7 @@ class TaskController extends Controller
         $task->body = $request->body;
         $task->save();
 
-        return redirect(route('tasks.index'));
+        return redirect(route('tasks.index'))->with('success', '新しいTodoを作成しました');
     }
 
     public function show(Task $task)
@@ -53,7 +53,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->body = $request->body;
         $task->save();
-        return redirect(route('tasks.show', $task));
+        return redirect(route('tasks.show', $task))->with('success', '編集に成功しました');
     }
 
     public function updateStatus(Task $task)
@@ -61,13 +61,13 @@ class TaskController extends Controller
         $task = Task::find($task->id);
         $task->status = ($task->status) ? 0 : 1;
         $task->save();
-        return redirect(route('tasks.index'));
+        return redirect(route('tasks.index'))->with('success', 'ステータスを更新しました');
     }
 
     public function destroy(Task $task)
     {
         $this->authorize('delete', $task);
         $task->delete();
-        return redirect(route('tasks.index'));
+        return redirect(route('tasks.index'))->with('danger', 'Todoを削除しました');
     }
 }
