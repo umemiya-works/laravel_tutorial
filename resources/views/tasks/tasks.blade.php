@@ -5,11 +5,16 @@
             <div class="align-middle">{{ $task->created_at }}</div>
         </td>
         <td class="align-middle">
-            @if($task->status == true)
-                <div class="w-50 btn btn-success align-middle">完了</div>
-            @else
-                <div class="w-50 btn btn-danger align-middle">未完了</div>
-            @endif
+            <form action="{{ route('tasks.updateStatus', $task) }}" method="post" class="mr-2">
+                @csrf
+                @method('put')
+                <input type="hidden" name="status" value="{{ $task->status }}">
+                @if($task->status == true)
+                    <button type="submit" class="w-50 btn btn-success align-middle">完了</button>
+                @else
+                    <button type="submit" class="w-50 btn btn-danger align-middle">未完了</button>
+                @endif
+            </form>
         </td>
     </tr>
 @empty

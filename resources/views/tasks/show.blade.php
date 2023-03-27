@@ -11,7 +11,11 @@
                 @csrf
                 @method('put')
                 <input type="hidden" name="status" value="{{ $task->status }}">
-                <button type="submit" class="btn btn-primary">完了</button>
+                @if($task->status == true)
+                    <button type="submit" class="btn btn-success">完了</button>
+                @else
+                    <button type="submit" class="btn btn-danger">未完了</button>
+                @endif
             </form>
             <button class="btn btn-success mr-2">
                 <a href="{{ route('tasks.edit', $task) }}" class="text-white">編集</a>

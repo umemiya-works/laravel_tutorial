@@ -59,7 +59,7 @@ class TaskController extends Controller
     public function updateStatus(Task $task)
     {
         $task = Task::find($task->id);
-        $task->status = true;
+        $task->status = ($task->status) ? 0 : 1;
         $task->save();
         return redirect(route('tasks.index'));
     }
