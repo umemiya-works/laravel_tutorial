@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::resource('tasks', 'TaskController');
+Route::put('/tasks/{task}/status', 'TaskController@updateStatus')->name('tasks.updateStatus');
 
 Auth::routes();
 

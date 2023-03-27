@@ -50,16 +50,18 @@ class TaskController extends Controller
     public function update(TaskPostRequest $request, Task $task)
     {
         $this->authorize('update', $task);
-        if($request->status === null) {
-            $task->title = $request->title;
-            $task->body = $request->body;
-            $task->save();
-        } else {
-            $task= Task::find($task->id);
-            $task->status = true;
-            $task->save();
-        }
+        $task->title = $request->title;
+        $task->body = $request->body;
+        $task->save();
         return redirect(route('tasks.show', $task));
+    }
+
+    public function updateStatus(Task $task)
+    {
+        $task = Task::find($task->id);
+        $task->status = true;
+        $task->save();
+        return redirect(route('tasks.index'));
     }
 
     public function destroy(Task $task)
