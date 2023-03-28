@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="card">
+    @include('commons.flash')
     <div class="card-body">
         <h2 class="card-title">{{ $task->title }}</h2>
         <div class="card-text my-4">{!! nl2br(e($task->body)) !!}</div>

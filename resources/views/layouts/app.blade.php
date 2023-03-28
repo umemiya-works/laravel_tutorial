@@ -15,7 +15,6 @@
         @include('commons.header')
     </header>
     <main class="container position-relative">
-        @include('commons.flash')
         @yield('content')
     </main>
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
